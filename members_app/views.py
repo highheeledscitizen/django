@@ -27,7 +27,8 @@ def input_page(request):
 
 
 def input_list(request):
-    messages = request.session.get('messages', [])
-    return render(request, 'input_list.html', {'messages': messages})
+    session_messages = request.session.get('messages', [])
+    db_messages = Message.objects.all()
+    return render(request, 'input_list.html', {'messages': session_messages, 'db_messages': db_messages})
 
 
